@@ -1,16 +1,13 @@
 output "rhel9_4_ami_id" {
   value = data.aws_ami.rhel9-4-ami-latest.id
-
 }
 
 output "rhel9_4_ami_name" {
   value = data.aws_ami.rhel9-4-ami-latest.name
-
 }
 
 output "aws_region" {
   value = var.aws_region
-
 }
 
 output "tfe_hostname" {
