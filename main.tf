@@ -1,7 +1,3 @@
-variable "tfe_version_image" {
-  default = "v202507-1"
-}
-
 module "tfe_infra" {
   source = "./modules/md01-tfe-infra"
 

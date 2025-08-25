@@ -9,6 +9,12 @@ variable "aws_region" {
   default     = "eu-west-1"
 }
 
+variable "tfe_version_image" {
+  description = "The TFE version image"
+  type        = string
+  default     = "1.0.0"
+}
+
 variable "tfe_instance_class" {
   description = "The ec2 instance type for TFE"
   type        = string
