@@ -2,7 +2,7 @@
 
 ## What is this guide about?
 
-This guide is to have Terraform Enterprise running with Docker.
+This guide is to have Terraform Enterprise running with Podman.
 
 ## Prerequisites 
 
@@ -36,13 +36,13 @@ export AWS_SECRET_ACCESS_KEY=<your_secret_key>
 
 Open your cli and run:
 ```
-git clone git@github.com:StamatisChr/tfe-fdo-docker-active-active.git
+git clone git@github.com:StamatisChr/tfe-fdo-podman-active-active.git
 ```
 
 
 When the repository cloning is finished, change directory to the repo’s terraform directory:
 ```
-cd tfe-fdo-docker-active-active
+cd tfe-fdo-podman-active-active
 ```
 
 Here you need to create a `variables.auto.tfvars` file with your specifications. Use the example tfvars file.
@@ -98,11 +98,11 @@ Example:
 Apply complete! Resources: 40 added, 0 changed, 0 destroyed.
 ```
 
-## Wait for TFE resources creation
+## Wait for TFE resources creation, setup admin user and TFE organization
 
 change directory:
 ```
-cd 00-wait-tfe-start
+cd 01-iact-admin-token
 ```
 
 run the terraform configuration:
@@ -115,42 +115,8 @@ terraform apply --auto-approve
 ```
 
 This can take 15-20 minutes.
-Wait until the run is completed.
 
-## Create initial admin user
-
-change directory:
-```
-cd ../01-create-initial-admin
-```
-
-run the terraform configuration:
-```
-terraform init
-```
-
-```
-terraform apply --auto-approve
-```
-When the run is finished continue to the next step.
-
-## Create a TFE organization and workspace
-
-change directory:
-```
-cd ../02-tfe-org-ws
-```
-
-run the terraform configuration:
-```
-terraform init
-```
-
-```
-terraform apply --auto-approve
-```
-
-When the run is finished use the output values to login to TFE.
+When the run is finished use the output values to login to TFE:
 - Copy the `terraform_login` output command
 
 example output:
@@ -194,7 +160,7 @@ Example output:
 Preparing the remote apply...
 
 To view this run in a browser, visit:
-https://unified-prawn.stamatios-chrysinas.sbx.hashidemos.io/app/example-org/example-workspace/runs/run-5xDKMBDEf6v1evj1
+https://usable-deer.stamatios-chrysinas.sbx.hashidemos.io/app/example-org/example-workspace/runs/run-5xDKMBDEf6v1evj1
 ```
 
 You can use the `To view this run in a browser, visit:` URL to see this run on TFE.
@@ -214,12 +180,11 @@ To delete all the infrastructure resources, run:
 cd ..
 ```
 
-Now in the `tfe-fdo-docker-active-active` run:
+Now in the `tfe-fdo-podman-active-active` directory, run:
 
 ```
-terraform destroy
+bash clean_up.sh
 ```
-type yes when prompted.
 
 Wait for the resources deletion. It can take 20 minutes or more.
 
