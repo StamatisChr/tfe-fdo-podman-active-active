@@ -8,17 +8,14 @@ terraform {
       source  = "hashicorp/random"
       version = "~> 3.6"
     }
-
     acme = {
       source  = "vancluever/acme"
       version = "~> 2.0"
     }
-
     cloudinit = {
       source  = "hashicorp/cloudinit"
       version = "~> 2.0"
     }
-
     restapi = {
       source  = "Mastercard/restapi"
       version = "~> 1.18"
