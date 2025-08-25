@@ -5,29 +5,29 @@ data "cloudinit_config" "tfe_user_data" {
   part {
     content_type = "text/cloud-config"
     content = templatefile("./modules/md01-tfe-infra/tfe-cloud-config.yaml", {
+      admin_email                    = var.tfe_admin_email
+      admin_password                 = var.tfe_admin_password
+      admin_username                 = var.tfe_admin_user
       aws_region                     = var.aws_region
-      tfe_license                    = var.tfe_license
-      tfe_version_image              = var.tfe_version_image
-      tfe_hostname                   = "${random_pet.hostname_suffix.id}.${var.hosted_zone_name}"
-      tfe_http_port                  = var.tfe_http_port
-      tfe_https_port                 = var.tfe_https_port
-      tfe_encryption_password        = var.tfe_encryption_password
-      tfe_host_path_to_certificates  = var.tfe_host_path_to_certificates
       bundle                         = var.lets_encrypt_cert
       cert                           = var.lets_encrypt_cert
       key                            = var.lets_encrypt_key
-      tfe_database_user              = var.tfe_database_user
+      org_name                       = var.tfe_org_name
+      tfe_database_host              = aws_db_instance.tfe_postgres.endpoint
       tfe_database_name              = var.tfe_database_name
       tfe_database_password          = var.tfe_database_password
-      tfe_database_host              = aws_db_instance.tfe_postgres.endpoint
-      tfe_object_storage_bucket_name = "${tolist(local.bucket_names)[0]}-${random_pet.hostname_suffix.id}-${lower(random_string.s3.id)}"
-      tfe_shared_bucket_name         = "${tolist(local.bucket_names)[1]}-${random_pet.hostname_suffix.id}-${lower(random_string.s3.id)}"
-      tfe_redis_host                 = aws_elasticache_cluster.tfe_redis.cache_nodes[0].address
+      tfe_database_user              = var.tfe_database_user
+      tfe_encryption_password        = var.tfe_encryption_password
+      tfe_hostname                   = "${random_pet.hostname_suffix.id}.${var.hosted_zone_name}"
+      tfe_host_path_to_certificates  = var.tfe_host_path_to_certificates
+      tfe_http_port                  = var.tfe_http_port
+      tfe_https_port                 = var.tfe_https_port
       tfe_iact_token                 = random_string.iact_token.result
-      admin_username                 = var.tfe_admin_user
-      admin_email                    = var.tfe_admin_email
-      admin_password                 = var.tfe_admin_password
-      org_name                       = var.tfe_org_name
+      tfe_license                    = var.tfe_license
+      tfe_object_storage_bucket_name = "${tolist(local.bucket_names)[0]}-${random_pet.hostname_suffix.id}-${lower(random_string.s3.id)}"
+      tfe_redis_host                 = aws_elasticache_cluster.tfe_redis.cache_nodes[0].address
+      tfe_shared_bucket_name         = "${tolist(local.bucket_names)[1]}-${random_pet.hostname_suffix.id}-${lower(random_string.s3.id)}"
+      tfe_version_image              = var.tfe_version_image
       workspace_name                 = var.tfe_workspace_name
     })
   }
