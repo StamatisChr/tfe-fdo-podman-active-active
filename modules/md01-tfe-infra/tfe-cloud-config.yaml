@@ -138,9 +138,7 @@ write_files:
       Restart=always
       [Kube]
       Yaml=tfe.yml
-
-
-
+      
 runcmd:
 #Install and start aws ssm agent
   - dnf install -y https://s3.${aws_region}.amazonaws.com/amazon-ssm-${aws_region}/latest/linux_amd64/amazon-ssm-agent.rpm
