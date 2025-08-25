@@ -1,4 +1,4 @@
-# Install TFE with docker
+# Install TFE with podman
 
 ## What is this guide about?
 
