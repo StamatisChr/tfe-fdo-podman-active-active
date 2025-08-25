@@ -1,12 +1,3 @@
-# terraform {
-#   required_providers {
-#     acme = {
-#       source  = "vancluever/acme"
-#       configuration_aliases = [ acme ]
-#     }
-#   }
-# }
-
 # Generate a private key for the acme account
 resource "tls_private_key" "acme_key" {
   algorithm = "RSA"
@@ -94,4 +85,3 @@ resource "aws_s3_object" "cert_chain" {
   content_type = "application/x-pem-file"
   depends_on   = [aws_s3_bucket.tfe_bucket]
 }
-
