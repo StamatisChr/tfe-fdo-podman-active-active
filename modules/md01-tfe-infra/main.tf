@@ -1,5 +1,3 @@
-
-
 resource "random_pet" "hostname_suffix" {
   length = 2
 }
