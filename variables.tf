@@ -66,7 +66,6 @@ variable "lets_encrypt_cert" {
   description = "value"
   type        = string
   default     = "fullchain.pem"
-
 }
 
 variable "lets_encrypt_key" {
