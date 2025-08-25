@@ -113,7 +113,6 @@ resource "aws_iam_policy" "s3_access_policy" {
 resource "aws_iam_role_policy_attachment" "s3_attach" {
   policy_arn = aws_iam_policy.s3_access_policy.arn
   role       = aws_iam_role.ec2_s3_access.name
-
 }
 
 resource "aws_iam_instance_profile" "ec2_s3_access" {
@@ -130,7 +129,6 @@ resource "aws_iam_role_policy_attachment" "SSM" {
   policy_arn = data.aws_iam_policy.SecurityComputeAccess.arn
 }
 
-
 # DNS 
 resource "aws_route53_record" "tfe" {
   zone_id = data.aws_route53_zone.my_aws_dns_zone.id
@@ -138,7 +136,6 @@ resource "aws_route53_record" "tfe" {
   type    = "CNAME"
   ttl     = 60
   records = [aws_lb.tfe_load_balancer.dns_name]
-
 }
 
 resource "aws_db_instance" "tfe_postgres" {
@@ -204,7 +201,6 @@ resource "aws_s3_bucket_public_access_block" "tfe_bucket_access" {
   block_public_policy     = true
   ignore_public_acls      = true
   restrict_public_buckets = true
-
 }
 
 resource "aws_s3_bucket_versioning" "versioning_example" {
