@@ -28,7 +28,6 @@ module "tfe_infra" {
   tfe_workspace_name             = var.tfe_workspace_name
 }
 
-
 output "tfe_infra" {
   value     = module.tfe_infra
   sensitive = true
