@@ -54,7 +54,6 @@ resource "aws_vpc_security_group_ingress_rule" "port_8201_vault" {
   to_port           = 8201
 }
 
-
 resource "aws_vpc_security_group_ingress_rule" "port_5432_postgres" {
   security_group_id = aws_security_group.tfe_sg.id
   cidr_ipv4         = data.aws_vpc.default.cidr_block
@@ -156,7 +155,6 @@ resource "aws_db_instance" "tfe_postgres" {
     Name = "stam-${random_pet.hostname_suffix.id}"
   }
 }
-
 
 resource "aws_elasticache_cluster" "tfe_redis" {
   cluster_id           = "tfe-redis-${random_pet.hostname_suffix.id}"
